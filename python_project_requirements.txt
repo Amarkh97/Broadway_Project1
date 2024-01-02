@@ -1,0 +1,17 @@
+Library Management System
+
+Functional Requirements:
+1. No login required but 2 types of users required
+	a. Librarian
+	b. Students/Users
+2. Feature to add books by librarian
+3. Feature to retrieve books by librarian and also students/users.
+	a. Feature to search books.
+4. Feature to update books by librarian
+5. Feature to delete books by librarian
+6. Feature to add, retrieve, update and delete student by librarian
+7. Feature to create a lend record of students by librarian
+	a. Feature to update a lend record after the student returns their books
+8. The whole application should be a CLI.
+9. Everything should be stored in the database(sqlite at minimum).
+10. The project should be versioned using git and github.
