@@ -99,6 +99,7 @@ def operations(conn):
                         add_a_book(conn, name, quantity)
                     
                     elif choice == 3:
+                        print("Enter Q to stop further input id")
                         book_id=[]
                         while True:
                             try:
@@ -113,8 +114,7 @@ def operations(conn):
                     
                     elif choice== 2:
                         data =available_books_info(conn)
-                        for i in data:
-                            print(i)
+                        
 
                     elif choice == 4:
                         book_id = int(input("Enter book ID to update: "))

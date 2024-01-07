@@ -50,8 +50,11 @@ def available_books_info(conn):
     cursor= conn.cursor()
     cursor.execute('select * from books')
     data=cursor.fetchall()
-    for i in data:
-        print(i)
+    if data:
+        for i in data:
+            print(i)
+    else:
+        print("NO BOOKS AVAILABLE")
     print("========================================================================================")
 def delete_books(conn, ids):
     """
@@ -98,11 +101,12 @@ def update_books(conn,new_name,id,quantity):
 def book_query(conn,name):
     try:
         cursor=conn.cursor()
-        cursor.execute('SELECT * FROM books WHERE book_name=?',(name,))
+        cursor.execute('SELECT * FROM books WHERE book_name LIKE ?',('%' +name+  '%',))
         book=cursor.fetchall()
         if book:
             for i in book:
-                print("\nBOOK FOUND")
+                print("\n")
+                print(i[1],"BOOK FOUND")
                 print("BOOK id:",i[0])
                 
                 print("BOOK available quantity",i[2])
