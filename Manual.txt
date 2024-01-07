@@ -1,0 +1,4 @@
+1. If you're a Librarian execute "python librarian.py"
+2. If you're a Student execute "python student.py"
+
+Note: "python librarian.py" must been run before firstly executing "python student.py" in your computer
