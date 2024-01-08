@@ -50,7 +50,11 @@ def available_books_info(conn):
     cursor= conn.cursor()
     cursor.execute('select * from books')
     data=cursor.fetchall()
+    cursor.execute('PRAGMA table_info(books)')
+    columns = cursor.fetchall()
+    column_names = [column[1] for column in columns]
     if data:
+        print(column_names)
         for i in data:
             print(i)
     else:
@@ -101,9 +105,18 @@ def update_books(conn,new_name,id,quantity):
 def book_query(conn,name):
     try:
         cursor=conn.cursor()
+                # Retrieve column names
+        # cursor.execute('PRAGMA table_info(books)')
+        # columns = cursor.fetchall()
+        # column_names = [column[1] for column in columns]
         cursor.execute('SELECT * FROM books WHERE book_name LIKE ?',('%' +name+  '%',))
         book=cursor.fetchall()
+        # column_names = [column[1] for column in columns]
+        # print(column_names,"\n")
         if book:
+            # print(column_names)
+                
+
             for i in book:
                 print("\n")
                 print(i[1],"BOOK FOUND")
@@ -144,6 +157,11 @@ where lend_record.student_id = ?
 """, (student_id,)
     )
     data= cursor.fetchall()
+    # cursor.execute('PRAGMA table_info(............)')
+    # columns = cursor.fetchall()
+    # column_names = [column[1] for column in columns]
+    # if data:
+    #     print(column_names)
     if data:   
         for i in data:
             print(i)
@@ -167,10 +185,17 @@ inner join student on lend_record.student_id =student.sid
     )
     
     data = cursor.fetchall()
-    
-    for i in data:
-            print(i)
-    
+    cursor.execute('PRAGMA table_info(lend_record)')
+    columns = cursor.fetchall()
+    column_names = [column[1] for column in columns]
+    if data:
+        print("Note: return status 0: not-returned")
+        print(column_names)
+    if data:
+        for i in data:
+                print(i)
+    else:
+        print("no record found")
 def return_book(conn,sid,bid):
     cursor= conn.cursor()
     cursor.execute('update lend_record set return_status=1 where student_id=? and book_id=?', (sid,bid))
